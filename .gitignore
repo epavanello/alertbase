@@ -1,5 +1,5 @@
-/node_modules/
-/public/build/
-
 .DS_Store
-.unotes/
+node_modules
+/build
+/.svelte-kit
+/package
