@@ -4,14 +4,14 @@
 
 Install the dependencies...
 
-``` bash
+```bash
 cd alertbase
 npm install
 ```
 
 ...then start [Rollup](https://rollupjs.org):
 
-``` bash
+```bash
 npm run dev
 ```
 
@@ -25,7 +25,7 @@ If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommen
 
 To create an optimised version of the app:
 
-``` bash
+```bash
 npm run build
 ```
 
@@ -35,9 +35,9 @@ You can run the newly built app with `npm run start`. This uses [sirv](https://g
 
 By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
 
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for _any_ path. You can make it so by editing the `"start"` command in package.json:
 
-``` js
+```js
 "start": "sirv public --single"
 ```
 
@@ -45,13 +45,13 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 
 This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
 
-``` bash
+```bash
 node scripts/setupTypeScript.js
 ```
 
 Or remove the script via:
 
-``` bash
+```bash
 rm scripts/setupTypeScript.js
 ```
 
@@ -63,13 +63,13 @@ If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need 
 
 Install `vercel` if you haven't already:
 
-``` bash
+```bash
 npm install -g vercel
 ```
 
 Then, from within your project folder:
 
-``` bash
+```bash
 cd public
 vercel deploy --name my-project
 ```
@@ -78,13 +78,13 @@ vercel deploy --name my-project
 
 Install `surge` if you haven't already:
 
-``` bash
+```bash
 npm install -g surge
 ```
 
 Then, from within your project folder:
 
-``` bash
+```bash
 npm run build
 surge public my-project.surge.sh
 ```
