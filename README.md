@@ -4,13 +4,13 @@
 
 Install the dependencies...
 
-``` bash
+```bash
 cd alertbase
 yarn
 ```
 
 ...then start the server:
 
-``` bash
+```bash
 yarn dev
 ```
