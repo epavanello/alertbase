@@ -14,13 +14,14 @@ const config = {
       resolve: {
         alias: {
           $components: path.resolve(path.dirname(''), './src/components'),
-          $lib: path.resolve(path.dirname(''), './src/lib'),
+          $logic: path.resolve(path.dirname(''), './src/logic'),
           $containers: path.resolve(path.dirname(''), './src/containers'),
           $styles: path.resolve(path.dirname(''), './src/styles'),
           $assets: path.resolve(path.dirname(''), './src/assets')
         }
       }
-    }
+    },
+    ssr: false
   }
 }
 
