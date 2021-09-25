@@ -1,12 +1,11 @@
 <script lang="ts">
   import Footer from '$components/Footer.svelte'
+  import Sidebar from '$components/Sidebar.svelte'
   import Tailwind from '$styles/Tailwind.svelte'
 </script>
 
 <Tailwind />
-<main class="container mx-auto h-full">
-  <atricle class="prose">
-    <h1 class="text-center dark:text-white py-4">Welcome to Alertbase</h1>
-  </atricle>
+<main class="h-full">
+  <Sidebar />
 </main>
 <Footer />
