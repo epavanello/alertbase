@@ -2,7 +2,10 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "es2020",
-    "lib": ["es2020", "DOM"],
+    "lib": [
+      "es2020",
+      "DOM"
+    ],
     "target": "es2019",
     /**
 			svelte-preprocess cannot figure out whether you have a value or a type, so tell TypeScript
@@ -24,17 +27,36 @@
     "checkJs": true,
     "strictNullChecks": true,
     "paths": {
-      "$components": ["./src/components"],
-      "$components/*": ["./src/components/*"],
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"],
-      "$containers": ["./src/containers"],
-      "$containers/*": ["./src/containers/*"],
-      "$styles": ["./src/styles"],
-      "$styles/*": ["./src/styles/*"],
-      "$assets": ["./src/assets"],
-      "$assets/*": ["./src/assets/*"]
+      "$components": [
+        "./src/components"
+      ],
+      "$components/*": [
+        "./src/components/*"
+      ],
+      "$logic": [
+        "./src/logic"
+      ],
+      "$logic/*": [
+        "./src/logic/*"
+      ],
+      "$containers": [
+        "./src/containers"
+      ],
+      "$containers/*": [
+        "./src/containers/*"
+      ],
+      "$styles": [
+        "./src/styles"
+      ],
+      "$styles/*": [
+        "./src/styles/*"
+      ],
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.svelte"
+  ]
 }
