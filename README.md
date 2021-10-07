@@ -1,6 +1,6 @@
 # ALERTBASE
 
-_SaaS platform for manage reminders_
+_SaaS tool for manage reminders_
 
 ## Get started
 
