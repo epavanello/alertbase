@@ -2,7 +2,7 @@ name: scheduler
 
 on:
   schedule:
-    - cron: '55 * * * *'
+    - cron: '* * * * *'
 
 jobs:
   call-scheduler:
