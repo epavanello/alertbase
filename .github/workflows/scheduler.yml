@@ -10,4 +10,4 @@ jobs:
 
     steps:
       - name: Call netlify scheduler
-        run: curl 'http://localhost:8888/.netlify/functions/scheduler'
+        run: curl 'https://alertbase.netlify.app/.netlify/functions/scheduler'
