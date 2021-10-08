@@ -5,7 +5,8 @@
 
   @layer components {
     input[type='text'],
-    input[type='password'] {
+    input[type='password'],
+    input[type='datetime-local'] {
       @apply border-b border-gray-300 outline-none px-2 py-1 bg-transparent;
     }
 

@@ -36,7 +36,7 @@
   }
 
   async function loadData() {
-    ;({ data, error } = await supabase.from('reminders').select())
+    ;({ data, error } = await supabase.from('reminders').select().order('reminder_date', { ascending: false }))
     console.log(data)
   }
 
@@ -48,14 +48,15 @@
   loadData()
 </script>
 
-<input type="text" bind:value={newReminder} />
+<input type="text" bind:value={newReminder} placeholder="Remind me"/>
 <Datetime bind:date={reminderDate} />
-<button type="button" on:click={addReminder}>Submit</button>
+<button type="button" class="primary" on:click={addReminder}>Submit</button>
 
 <div class="grid gap-2 mt-4">
   {#each data || [] as row}
     <div>
       {row.text} - {dayjs(row.reminder_date).toDate().toLocaleString()}
+      <input type="checkbox" readonly disabled checked={row.sent} />
       <button on:click={() => deleteRow(row.id)}>Delete</button>
     </div>
   {/each}

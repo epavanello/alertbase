@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
+    "dev:netlify": "netlify dev",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
@@ -32,6 +33,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@netlify/functions": "^0.7.2",
     "@supabase/supabase-js": "^1.24.0",
     "@sveltejs/adapter-netlify": "^1.0.0-next.32",
     "dayjs": "^1.10.7",
