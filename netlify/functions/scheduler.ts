@@ -1,5 +1,6 @@
 import { Handler } from '@netlify/functions'
 import { createClient } from '@supabase/supabase-js'
+import sendGrid from '@sendgrid/mail'
 const handler: Handler = async () => {
   const supabase = createClient('' + process.env.SUPABASE_URL, '' + process.env.SUPABASE_SERVICE_ROLE)
 
@@ -16,6 +17,19 @@ const handler: Handler = async () => {
     }
   }
   if (body.length > 0) {
+    sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
+
+    await sendGrid.send({
+      from: 'pavanello.emanuele@gmail.com',
+      templateId: 'd-9f68d8ef5271498e8830eda324a42707',
+      personalizations: body.map((reminder) => ({
+        to: { email: 'pavanello.emanuele@gmail.com' },
+        dynamicTemplateData: {
+          text: reminder.text
+        }
+      }))
+    })
+
     // Sending...
     await supabase
       .from('reminders')
