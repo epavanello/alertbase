@@ -1,13 +1,12 @@
-name: scheduler
+name: Trigger Netlify Scheduler on a CRON Schedule
 
 on:
   schedule:
-    - cron: '* * * * *'
-
+    - cron: '*/5 * * * *'
 jobs:
-  call-scheduler:
+  build:
+    name: Trigger Site Rebuild
     runs-on: ubuntu-latest
-
     steps:
-      - name: Call netlify scheduler
-        run: curl 'https://alertbase.netlify.app/.netlify/functions/scheduler'
+      - name: cURL request
+        run: curl -X POST -d {} https://alertbase.netlify.app/.netlify/functions/scheduler
