@@ -46,11 +46,32 @@
   }
 
   loadData()
+
+  let remindersDestination: string = ''
+
+  async function loadConfig() {
+    const { body, error } = await supabase.from('configuration').select()
+    if(error) {
+      alert(error.message)
+    }
+    if (body?.length == 1) {
+      remindersDestination = body[0].email_notification
+    }
+  }
+  async function updateConfig() {
+    await supabase.from('configuration').upsert({ email_notification: remindersDestination })
+  }
+  loadConfig()
 </script>
 
-<input type="text" bind:value={newReminder} placeholder="Remind me"/>
+<input type="text" bind:value={newReminder} placeholder="Remind me" />
 <Datetime bind:date={reminderDate} />
 <button type="button" class="primary" on:click={addReminder}>Submit</button>
+
+<div class="mt-4">
+  <label>Send reminders to: <input type="text" bind:value={remindersDestination} /></label>
+  <button on:click={updateConfig}>Update</button>
+</div>
 
 <div class="grid gap-2 mt-4">
   {#each data || [] as row}
