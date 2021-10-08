@@ -1,12 +1,13 @@
 import { Handler } from '@netlify/functions'
 import { createClient } from '@supabase/supabase-js'
 import sendGrid from '@sendgrid/mail'
+
 const handler: Handler = async () => {
   const supabase = createClient('' + process.env.SUPABASE_URL, '' + process.env.SUPABASE_SERVICE_ROLE)
 
   const { body, error } = await supabase
     .from('reminders')
-    .select()
+    .select(`id, text, configuration(email_notification)`)
     .eq('sent', false)
     .lte('reminder_date', new Date().toISOString())
 
@@ -16,14 +17,15 @@ const handler: Handler = async () => {
       body: error.message
     }
   }
-  if (body.length > 0) {
+  const validReminders = body.filter((reminder) => reminder?.configuration?.email_notification)
+  if (validReminders.length > 0) {
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
     await sendGrid.send({
       from: 'pavanello.emanuele@gmail.com',
       templateId: 'd-9f68d8ef5271498e8830eda324a42707',
-      personalizations: body.map((reminder) => ({
-        to: { email: 'pavanello.emanuele@gmail.com' },
+      personalizations: validReminders.map((reminder) => ({
+        to: { email: reminder.configuration.email_notification },
         dynamicTemplateData: {
           text: reminder.text
         }
@@ -36,13 +38,13 @@ const handler: Handler = async () => {
       .update({ sent: true })
       .in(
         'id',
-        body.map((row) => row.id)
+        validReminders.map((row) => row.id)
       )
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify(body)
+    body: JSON.stringify(validReminders)
   }
 }
 
