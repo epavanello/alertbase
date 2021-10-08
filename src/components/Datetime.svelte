@@ -1,13 +1,14 @@
 <script lang="ts">
+  import dayjs from 'dayjs'
   export let date = new Date()
 
   let internal: string
 
   const input = (x: Date) => {
-    internal = x.toISOString().substr(0, 16)
+    internal = dayjs(x).add(dayjs().utcOffset(), 'minute').toISOString().substr(0, 16)
   }
   const output = (x: string) => {
-    date = new Date(Date.parse(x)) 
+    date = new Date(Date.parse(x))
   }
 
   $: input(date)

@@ -26,20 +26,20 @@
       <!--Logo-->
       <Alertbase />
       <!--Buttons-->
-      <div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+      <div class="md:ml-10 md:pr-4 md:space-x-8">
         {#each menu as item}
           {#if item.show == 'always' || (item.show == 'logged' && user) || (item.show == 'anonimous' && !user)}
             <a
               href={item.address}
-              class="font-semibold hover:text-gray-900  text-gray-600 dark:hover:text-gray-100 dark:text-gray-400 hidden lg:inline"
+              class="font-semibold hover:text-gray-900  text-gray-600 dark:hover:text-gray-100 dark:text-gray-400 inline"
               >{item.label}</a
             >
           {/if}
         {/each}
         {#if user}
-          <a href="app" class="button">Launch App</a>
+          <a href="app" class="button primary">Launch App</a>
         {:else}
-          <a href="signup" class="button">Create Account</a>
+          <a href="signup" class="button primary">Create Account</a>
         {/if}
       </div>
     </nav>
