@@ -8,5 +8,8 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: [require('@tailwindcss/typography')]
+  plugins: [
+    require('@tailwindcss/typography'),
+    ...(process.env.NODE_ENV == 'development' ? [require('tailwindcss-debug-screens')] : [])
+  ]
 }
