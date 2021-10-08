@@ -14,15 +14,18 @@
 </script>
 
 <script lang="ts">
+  import Datetime from '$components/Datetime.svelte'
+
   import supabase from '$logic/supabase'
   import type { PostgrestError } from '@supabase/postgrest-js'
   let data: any[] | null
   let error: PostgrestError | null
 
   let newReminder: string = ''
+  let reminderDate: Date | undefined
   async function addReminder() {
     if (newReminder.trim().length > 0) {
-      await supabase.from('reminders').insert({ text: newReminder })
+      await supabase.from('reminders').insert({ text: newReminder, reminder_date: reminderDate })
       newReminder = ''
       loadData()
     }
@@ -41,10 +44,11 @@
 </script>
 
 <input type="text" bind:value={newReminder} />
+<Datetime bind:date={reminderDate} />
 <button type="button" on:click={addReminder}>Submit</button>
 
 {#each data || [] as row}
-  <p>{row.text} <button on:click={() => deleteRow(row.id)}>Delete</button></p>
+  <p>{row.text} - {row.reminder_date} <button on:click={() => deleteRow(row.id)}>Delete</button></p>
 {/each}
 
 {#if error}
