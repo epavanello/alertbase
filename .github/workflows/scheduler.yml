@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: cURL request
-        run: curl -X POST -d {} https://alertbase.netlify.app/.netlify/functions/scheduler
+        run: curl -X POST -d {} https://alertbase.app/.netlify/functions/scheduler
