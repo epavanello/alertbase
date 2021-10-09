@@ -28,8 +28,9 @@
   }
 </script>
 
-<form>
+<form class="mt-16 card w-96 flex flex-col gap-4">
+  <h2 class="text-center">Create an account</h2>
   <input type="text" bind:value={email} placeholder="Email" />
   <input type="password" bind:value={password} placeholder="Password" />
-  <button type="button" on:click={signup}>Signup</button>
+  <button type="button" class="primary text-center" on:click={signup}>Signup</button>
 </form>
