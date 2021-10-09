@@ -1,11 +1,10 @@
 <script>
+  import '$styles/tailwind-output.css'
+
   import Alertbase from '$components/Alertbase.svelte'
   import Icon from '$components/Icon.svelte'
   import Footer from '$components/layout/Footer.svelte'
-  import Tailwind from '$styles/Tailwind.svelte'
 </script>
-
-<Tailwind />
 
 <div class="h-full flex flex-col">
   <div class="bg-gray-100 shadow-sm">

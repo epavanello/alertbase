@@ -20,12 +20,12 @@
   ]
 </script>
 
-<div class="relative pt-4 md:pt-6 px-4 sm:px-6 lg:px-8">
+<div class="relative py-4 md:py-6 px-4 sm:px-6 lg:px-8">
   <nav class="relative flex flex-col md:flex-row gap-8 items-center justify-between lg:justify-between">
     <!--Logo-->
     <Alertbase />
     <!--Buttons-->
-    <div class="flex flex-row justify-center gap-x-8 items-center flex-wrap md:flex-nowrap">
+    <div class="flex flex-row justify-center gap-x-8 items-center flex-wrap md:flex-nowrap gap-y-2">
       {#each menu as item}
         {#if item.show == 'always' || (item.show == 'logged' && user) || (item.show == 'anonimous' && !user)}
           <a
