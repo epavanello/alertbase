@@ -51,7 +51,7 @@
 
   async function loadConfig() {
     const { body, error } = await supabase.from('configuration').select()
-    if(error) {
+    if (error) {
       alert(error.message)
     }
     if (body?.length == 1) {
@@ -59,7 +59,7 @@
     }
   }
   async function updateConfig() {
-    await supabase.from('configuration').upsert({ email_notification: remindersDestination })
+    await supabase.from('configuration').upsert({ email_notification: remindersDestination }, { onConflict: 'user_id' })
   }
   loadConfig()
 </script>

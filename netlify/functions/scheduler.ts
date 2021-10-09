@@ -22,8 +22,8 @@ const handler: Handler = async () => {
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
     await sendGrid.send({
-      from: 'pavanello.emanuele@gmail.com',
-      templateId: 'd-9f68d8ef5271498e8830eda324a42707',
+      from: process.env.SENDGRID_TEMPLATE_FROM,
+      templateId: process.env.SENDGRID_TEMPLATE_ID,
       personalizations: validReminders.map((reminder) => ({
         to: { email: reminder.configuration.email_notification },
         dynamicTemplateData: {

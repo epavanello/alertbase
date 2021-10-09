@@ -1,26 +1,18 @@
 # ALERTBASE
 
-_SaaS tool for manage reminders_
+*SaaS tool for manage reminders*
 
-## Get started
+## Tech stack
 
-Install the dependencies...
-
-```bash
-cd alertbase
-yarn
-```
-
-...then start the server:
-
-```bash
-yarn dev
-```
+* [Sveltekit](https://kit.svelte.dev/) and [Netlify](https://www.netlify.com/) for Jamstack
+* [Tailwindcss](https://tailwindcss.com/) for beautiful UI
+* [Supabase](https://supabase.io/) for DB and authentication
+* [Sendgrid](https://sendgrid.com/) as Email Delivery Service
 
 ## Roadmap
 
-- [ ] Basic UI design
-- [x] Connect to Supabase
-- [x] Manage Login/Signup
-- [x] Manage scheduler
-- [x] Send alterts 🎉
+* [ ] Basic UI design
+* [x] Connect to Supabase
+* [x] Manage Login/Signup
+* [x] Manage scheduler
+* [x] Send alterts 🎉
