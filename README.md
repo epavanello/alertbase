@@ -20,7 +20,7 @@ yarn dev
 ## Roadmap
 
 - [ ] Basic UI design
-- [ ] Connect to Supabase
-- [ ] Manage Login/Signup
-- [ ] Manage scheduler
-- [ ] Send alterts 🎉
+- [x] Connect to Supabase
+- [x] Manage Login/Signup
+- [x] Manage scheduler
+- [x] Send alterts 🎉
