@@ -19,12 +19,13 @@
 <script lang="ts">
   let email = ''
   let password = ''
+  let error: Error | null = null
   import { goto } from '$app/navigation'
+  import Alert from '$components/Alert.svelte'
 
   async function signup() {
-    const { error } = await supabase.auth.signUp({ email, password })
-    if (error) alert(error.message)
-    else goto('/login')
+    ;({ error } = await supabase.auth.signUp({ email, password }))
+    if (!error) goto('/login')
   }
 </script>
 
@@ -33,4 +34,5 @@
   <input type="text" bind:value={email} placeholder="Email" />
   <input type="password" bind:value={password} placeholder="Password" />
   <button type="button" class="primary text-center" on:click={signup}>Signup</button>
+  <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
 </form>

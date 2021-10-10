@@ -21,22 +21,19 @@
   let email = ''
   let password = ''
   let error: Error | null = null
+  let done = false
 
   async function login() {
     error = null
-    ;({ error } = await supabase.auth.signIn({ email, password }))
-    if (!error) goto('/app')
+    ;({ error } = await supabase.auth.api.resetPasswordForEmail(email))
+    done = !error
   }
 </script>
 
 <form class="mt-16 card w-96 flex flex-col gap-4">
-  <h2 class="text-center">Sign in to your account</h2>
+  <h2 class="text-center">Reset your password</h2>
   <input type="text" bind:value={email} placeholder="Email" />
-  <input type="password" bind:value={password} placeholder="Password" />
-  <div class="flex flex-row justify-end">
-    <!-- <label><input type="checkbox" /> Remember me</label> -->
-    <a href="/resetPassword">Forgot your password?</a>
-  </div>
-  <button type="button" class="primary text-center" on:click={login}>Login</button>
+  <button type="button" class="primary text-center" on:click={login}>Reset</button>
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
+  <Alert show={done} message="" on:close={() => (error = null)} type="info" />
 </form>
