@@ -1,17 +1,21 @@
 <script context="module">
-  import supabase from '$logic/supabase'
+  import supabase, { user } from '$logic/supabase'
 
   export async function load() {
-    const user = supabase.auth.user()
-    if (user) {
-      return {
-        status: 302,
-        redirect: '/'
-      }
-    }
-    return {
-      status: 200
-    }
+    return new Promise((resolve) => {
+      user.subscribe((u) => {
+        if (u) {
+          resolve({
+            status: 302,
+            redirect: '/'
+          })
+        } else {
+          resolve({
+            status: 200
+          })
+        }
+      })
+    })
   }
 </script>
 
@@ -41,7 +45,7 @@
   }
   async function update() {
     ;({ error } = await supabase.auth.api.updateUser(accessToken, { password }))
-    goto("/login")
+    goto('/login')
   }
 </script>
 
