@@ -10,7 +10,7 @@ console.log('Current user', currentUser)
 export const user = readable<User | undefined | null>(currentUser, function start(set) {
   const { data: subscription } = supabase.auth.onAuthStateChange((e, s) => {
     console.log('State changed', e, s)
-    if (e == 'SIGNED_IN') {
+    if (e == 'SIGNED_IN' || e == 'USER_UPDATED') {
       set(s?.user)
     } else {
       set(null)
