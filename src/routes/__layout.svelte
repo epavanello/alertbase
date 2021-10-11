@@ -6,8 +6,15 @@
   import { goto } from '$app/navigation'
 
   console.log(window.location.hash)
-  
+
   let urlSearch = new URLSearchParams(window.location.hash.substr(1))
+
+  console.log(
+    urlSearch.toString(),
+    urlSearch.has('type'),
+    urlSearch.has('access_token'),
+    urlSearch.get('type') == 'recovery'
+  )
 
   if (urlSearch.has('type') && urlSearch.has('access_token') && urlSearch.get('type') == 'recovery') {
     goto(`/resetPassword#access_token=${urlSearch.get('access_token')}`)
