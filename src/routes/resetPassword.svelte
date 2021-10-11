@@ -13,8 +13,10 @@
   }
   async function update() {
     ;({ error } = await supabase.auth.update({ password }))
-    passwordChanged = true
-    password = ''
+    if (!error) {
+      passwordChanged = true
+      password = ''
+    }
   }
 </script>
 
