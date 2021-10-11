@@ -5,6 +5,8 @@
   import Header from '$components/layout/Header.svelte'
   import { goto } from '$app/navigation'
 
+  console.log(window.location.hash)
+  
   let urlSearch = new URLSearchParams(window.location.hash.substr(1))
 
   if (urlSearch.has('type') && urlSearch.has('access_token') && urlSearch.get('type') == 'recovery') {
