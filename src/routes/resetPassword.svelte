@@ -1,25 +1,5 @@
-<script context="module">
-  import supabase, { user } from '$logic/supabase'
-
-  export async function load() {
-    return new Promise((resolve) => {
-      user.subscribe((u) => {
-        if (u) {
-          resolve({
-            status: 302,
-            redirect: '/'
-          })
-        } else {
-          resolve({
-            status: 200
-          })
-        }
-      })
-    })
-  }
-</script>
-
 <script lang="ts">
+  import supabase, { user } from '$logic/supabase'
   import { goto } from '$app/navigation'
   import Alert from '$components/Alert.svelte'
   let email = ''
