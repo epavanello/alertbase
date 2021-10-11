@@ -5,8 +5,11 @@ import { readable } from 'svelte/store'
 const supabase = createClient('' + import.meta.env.VITE_SUPABASE_URL, '' + import.meta.env.VITE_SUPABASE_KEY)
 export default supabase
 
-export const user = readable<User | undefined | null>(supabase.auth.user(), function start(set) {
+const currentUser = supabase.auth.user()
+console.log('Current user', currentUser)
+export const user = readable<User | undefined | null>(currentUser, function start(set) {
   const { data: subscription } = supabase.auth.onAuthStateChange((e, s) => {
+    console.log('State changed', e, s)
     if (e == 'SIGNED_IN') {
       set(s?.user)
     } else {
