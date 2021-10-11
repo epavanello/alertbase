@@ -1,37 +1,26 @@
 <script lang="ts">
   import supabase, { user } from '$logic/supabase'
-  import { goto } from '$app/navigation'
   import Alert from '$components/Alert.svelte'
   let email = ''
   let password = ''
   let error: Error | null = null
-  let done = false
-
-  let setPassword = false
-  let accessToken = ''
-
-  function init() {
-    let urlSearch = new URLSearchParams(window.location.hash.substr(1))
-    if (urlSearch.has('access_token')) {
-      setPassword = true
-      accessToken = urlSearch.get('access_token')!
-    }
-  }
-  init()
+  let resetSent = false
+  let passwordChanged = false
 
   async function reset() {
     ;({ error } = await supabase.auth.api.resetPasswordForEmail(email))
-    done = !error
+    resetSent = !error
   }
   async function update() {
-    ;({ error } = await supabase.auth.api.updateUser(accessToken, { password }))
-    goto('/login')
+    ;({ error } = await supabase.auth.update({ password }))
+    passwordChanged = true
+    password = ''
   }
 </script>
 
 <form class="mt-16 card w-96 flex flex-col gap-4">
   <h2 class="text-center">Reset your password</h2>
-  {#if setPassword}
+  {#if $user}
     <input type="password" bind:value={password} placeholder="Enter your new password" />
     <button type="button" class="primary text-center" on:click={update}>Update</button>
   {:else}
@@ -39,5 +28,6 @@
     <button type="button" class="primary text-center" on:click={reset}>Reset</button>
   {/if}
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
-  <Alert show={done} message="Reset request sent" on:close={() => (error = null)} type="info" />
+  <Alert show={resetSent} message="Reset request sent" on:close={() => (resetSent = false)} type="info" />
+  <Alert show={passwordChanged} message="Password changed" on:close={() => (passwordChanged = false)} type="info" />
 </form>
