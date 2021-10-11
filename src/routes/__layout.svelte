@@ -13,6 +13,7 @@
     urlSearch.toString(),
     urlSearch.has('type'),
     urlSearch.has('access_token'),
+    urlSearch.get('access_token'),
     urlSearch.get('type') == 'recovery'
   )
 
