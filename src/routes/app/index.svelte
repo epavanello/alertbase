@@ -37,7 +37,6 @@
 
   async function loadData() {
     ;({ data, error } = await supabase.from('reminders').select().order('reminder_date', { ascending: false }))
-    console.log(data)
   }
 
   async function deleteRow(id: number) {
