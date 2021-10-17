@@ -4,7 +4,6 @@
   import Footer from '$components/layout/Footer.svelte'
   import Header from '$components/layout/Header.svelte'
   import { goto } from '$app/navigation'
-  import { setContext } from 'svelte'
 
   let urlSearch = new URLSearchParams(window.location.hash.substr(1))
 
