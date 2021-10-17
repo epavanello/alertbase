@@ -21,16 +21,32 @@ const handler: Handler = async () => {
   if (validReminders.length > 0) {
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
-    await sendGrid.send({
-      from: process.env.SENDGRID_TEMPLATE_FROM,
-      templateId: process.env.SENDGRID_TEMPLATE_ID,
-      personalizations: validReminders.map((reminder) => ({
-        to: { email: reminder.configuration.email_notification },
-        dynamicTemplateData: {
-          text: reminder.text
+    try {
+      await sendGrid.send({
+        from: process.env.SENDGRID_TEMPLATE_FROM,
+        templateId: process.env.SENDGRID_TEMPLATE_ID,
+        personalizations: validReminders.map((reminder) => ({
+          to: { email: reminder.configuration.email_notification },
+          dynamicTemplateData: {
+            text: reminder.text
+          }
+        }))
+      })
+    } catch (e: unknown) {
+        if (typeof e === "string") {
+            return {
+              statusCode: 500,
+              body: e
+            }
+        } else if (e instanceof Error) {
+          return {
+            statusCode: 500,
+            body: e.message
+          }
         }
-      }))
-    })
+    }
+      
+    }
 
     // Sending...
     await supabase
