@@ -45,8 +45,6 @@ const handler: Handler = async () => {
           }
         }
     }
-      
-    }
 
     // Sending...
     await supabase
