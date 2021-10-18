@@ -1,7 +1,11 @@
-<atricle class="prose">
-  <h1 class="text-center dark:text-white pt-8">Welcome to Alertbase</h1>
+<atricle class="h-[400px] lg:h-[600px] flex flex-col justify-center items-center gap-2 sm:gap-6 lg:gap-12">
+  <h1 class="text-center dark:text-white text-2xl sm:text-4xl lg:text-7xl font-extrabold">Welcome to Alertbase</h1>
+  <p class="text-sm sm:text-2xl lg:text-3xl leading-6 text-center">
+    Clean, powerful, and easy-to-use reminder-taking app.<br />
+    Never miss your reminders again.
+  </p>
+  <div class="flex flex-row gap-4">
+    <button class="primary">Learn more</button>
+    <button>Start for free</button>
+  </div>
 </atricle>
-<div class="prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto pt-8">
-  <p class="lead">Alertbase is a clean, powerful, and easy-to-use reminder-taking app.</p>
-  <p class="lead">Never miss your reminders again.</p>
-</div>
