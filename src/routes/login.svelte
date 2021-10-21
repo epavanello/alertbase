@@ -31,7 +31,7 @@
   })
 
   async function login() {
-    console.log("Login")
+    console.log('Login')
     error = null
     ;({ error } = await supabase.auth.signIn({ email, password }))
     if (!error) goto('/app')

@@ -33,17 +33,17 @@ const handler: Handler = async () => {
         }))
       })
     } catch (e: unknown) {
-        if (typeof e === "string") {
-            return {
-              statusCode: 500,
-              body: e
-            }
-        } else if (e instanceof Error) {
-          return {
-            statusCode: 500,
-            body: e.message
-          }
+      if (typeof e === 'string') {
+        return {
+          statusCode: 500,
+          body: e
         }
+      } else if (e instanceof Error) {
+        return {
+          statusCode: 500,
+          body: e.message
+        }
+      }
     }
 
     // Sending...
