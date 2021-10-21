@@ -3,7 +3,7 @@
 </script>
 
 <footer class="fixed w-full left-0 bottom-0 py-4">
-  <div class="container mx-auto flex flex-row justify-end">
+  <div class="relative py-2 md:py-3 px-4 sm:px-6 lg:px-8 flex flex-row justify-end">
     <ThemeToggle />
   </div>
 </footer>

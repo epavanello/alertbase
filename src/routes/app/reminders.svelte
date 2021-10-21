@@ -1,0 +1,113 @@
+<script context="module" lang="ts">
+  import type { LoadOutput } from '@sveltejs/kit'
+
+  export function load(): LoadOutput {
+    const user = supabase.auth.user()
+    if (!user) {
+      return {
+        status: 302,
+        redirect: '/'
+      }
+    }
+    return {
+      status: 200
+    }
+  }
+</script>
+
+<script lang="ts">
+  import Datetime from '$components/Datetime.svelte'
+  import supabase from '$logic/supabase'
+
+  import type { PostgrestError } from '@supabase/postgrest-js'
+  import dayjs from 'dayjs'
+
+  interface Row {
+    text: string
+    reminder_date: string
+    id: number
+    sent: boolean
+  }
+
+  let data: Row[] | null
+  let error: PostgrestError | null
+
+  let newReminder = ''
+  let reminderDate: Date | undefined
+  async function addReminder() {
+    if (newReminder.trim().length > 0) {
+      await supabase.from('reminders').insert({
+        text: newReminder,
+        reminder_date: reminderDate
+      })
+      newReminder = ''
+      loadData()
+    }
+  }
+
+  async function loadData() {
+    ;({ data, error } = await supabase.from('reminders').select().order('reminder_date', { ascending: false }))
+  }
+
+  async function deleteRow(id: number) {
+    await supabase.from('reminders').delete().match({ id })
+    loadData()
+  }
+
+  loadData()
+
+  let remindersDestination = ''
+
+  async function loadConfig() {
+    const { body, error } = await supabase.from('configuration').select()
+    if (error) {
+      alert(error.message)
+    }
+    if (body?.length == 1) {
+      remindersDestination = body[0].email_notification
+    }
+  }
+  async function updateConfig() {
+    await supabase.from('configuration').upsert({ email_notification: remindersDestination }, { onConflict: 'user_id' })
+  }
+  loadConfig()
+</script>
+
+<div class="flex flex-col flex-wrap sm:flex-row ">
+  <div class="w-full sm:w-1/2 xl:w-2/3">
+    <div class="mb-4 xl:mr-4">
+      <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-700 w-full" >
+
+        <input type="text" bind:value={newReminder} placeholder="Remind me" />
+        <Datetime bind:date={reminderDate} />
+        <button type="button" class="primary" on:click={addReminder}>Submit</button>
+        
+        <div class="mt-4">
+          <label>Send reminders to: <input type="text" bind:value={remindersDestination} /></label>
+          <button on:click={updateConfig}>Update</button>
+        </div>
+        
+        <div class="grid gap-2 mt-4">
+          {#each data || [] as row}
+            <div>
+              {row.text} - {dayjs(row.reminder_date).toDate().toLocaleString()}
+              <input type="checkbox" readonly disabled checked={row.sent} />
+              <button on:click={() => deleteRow(row.id)}>Delete</button>
+            </div>
+          {/each}
+        </div>
+        
+        {#if error}
+          <p>{error.message}</p>
+        {/if}
+        
+      </div>
+    </div>
+  </div>
+  <div class="w-full sm:w-1/2 xl:w-1/3">
+    <div class="mb-4">
+      <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-700 w-full" />
+    </div>
+  </div>
+</div>
+
