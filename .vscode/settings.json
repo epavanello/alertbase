@@ -1,4 +1,5 @@
 {
   "files.autoSave": "onWindowChange",
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "eslint.validate": ["svelte"]
 }

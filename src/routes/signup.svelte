@@ -1,7 +1,5 @@
-<script context="module">
-  import supabase from '$logic/supabase'
-
-  export async function load() {
+<script context="module" lang="ts">
+  export function load(): LoadOutput {
     const user = supabase.auth.user()
     if (user) {
       return {
@@ -17,13 +15,16 @@
 </script>
 
 <script lang="ts">
-  let email = ''
-  let password = ''
-  let error: Error | null = null
+  import supabase from '$logic/supabase'
   import { goto } from '$app/navigation'
   import Alert from '$components/Alert.svelte'
   import { store } from '$logic/store'
   import { setLoginMessage } from '$logic/slices/uiSlice'
+  import type { LoadOutput } from '@sveltejs/kit'
+
+  let email = ''
+  let password = ''
+  let error: Error | null = null
 
   async function signup() {
     ;({ error } = await supabase.auth.signUp({ email, password }))

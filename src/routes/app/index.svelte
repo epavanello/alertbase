@@ -1,5 +1,7 @@
-<script context="module">
-  export async function load() {
+<script context="module" lang="ts">
+  import type { LoadOutput } from '@sveltejs/kit'
+
+  export function load(): LoadOutput {
     const user = supabase.auth.user()
     if (!user) {
       return {
@@ -15,14 +17,22 @@
 
 <script lang="ts">
   import Datetime from '$components/Datetime.svelte'
-
   import supabase from '$logic/supabase'
+
   import type { PostgrestError } from '@supabase/postgrest-js'
   import dayjs from 'dayjs'
-  let data: any[] | null
+
+  interface Row {
+    text: string
+    reminder_date: string
+    id: number
+    sent: boolean
+  }
+
+  let data: Row[] | null
   let error: PostgrestError | null
 
-  let newReminder: string = ''
+  let newReminder = ''
   let reminderDate: Date | undefined
   async function addReminder() {
     if (newReminder.trim().length > 0) {
@@ -46,7 +56,7 @@
 
   loadData()
 
-  let remindersDestination: string = ''
+  let remindersDestination = ''
 
   async function loadConfig() {
     const { body, error } = await supabase.from('configuration').select()

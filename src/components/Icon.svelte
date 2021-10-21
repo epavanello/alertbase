@@ -1,9 +1,9 @@
 <script lang="ts">
   import cn from 'classnames'
   export let name: string
-  export let outlined: boolean = false
-  export let filled: boolean = false
-  export let noMargin: boolean = false
+  export let outlined = false
+  export let filled = false
+  export let noMargin = false
   export let size: 'small' | 'normal' | 'big' = 'normal'
 
   let classes = ''
