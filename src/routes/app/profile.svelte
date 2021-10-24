@@ -22,7 +22,7 @@
   loadConfig()
 </script>
 
-<div class="w-1/3 mx-auto">
+<div class="w-full sm:w-1/2 xl:w-1/3 mx-auto">
   <div class="card">
     <h2 class="text-center">Your profile</h2>
     <Input id="reminder-email" label="Send reminders to" mandatory bind:value={remindersDestination} />
