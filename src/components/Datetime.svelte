@@ -16,8 +16,6 @@
 
   $: input(date)
   $: output(internal)
-
-  $: console.log(date?.toLocaleString())
 </script>
 
-<Input {id} {label} type="datetime-local" bind:value={internal} />
+<Input {id} {label} type="datetime-local" bind:value={internal} placeholder="Click to select a date" />

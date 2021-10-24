@@ -16,8 +16,9 @@
 </script>
 
 <div
-  class={classNames('shadow-lg flex flex-col gap-6 bg-white h-full rounded-2xl dark:bg-gray-700 relative', {
-    'rounded-b-none': sideView
+  class={classNames('shadow-lg flex flex-col py-3 bg-white h-full rounded-2xl dark:bg-gray-700 relative', {
+    'rounded-b-none gap-6': sideView,
+    'gap-2': sideView
   })}
 >
   <div class="hidden lg:flex items-center justify-center pt-6">
@@ -33,7 +34,7 @@
   <div
     class={classNames({
       'absolute bottom-3 right-8': sideView,
-      'border-t': !sideView
+      'pt-3 flex flex-row-reverse px-3': !sideView
     })}
   >
     <ThemeToggle />

@@ -17,35 +17,31 @@
     <div class="hidden lg:block self-stretch relative w-80 mt-4 ml-4">
       <Menu sideView />
     </div>
-    <div class="flex flex-col w-full pl-0 md:p-4 md:space-y-4">
+    <div class="flex flex-col w-full p-2 space-y-2 md:p-4 md:space-y-4">
       <!-- ORIZZONTAL HEADER -->
-      <header class="sticky top-0 w-full shadow-lg bg-white dark:bg-gray-700 items-center h-16 rounded-2xl z-40">
-        <div class="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
-          <div class="relative items-center pl-1 flex w-full lg:max-w-68 sm:pr-2 sm:ml-0">
-            <div class="relative p-1 flex flex-row items-center justify-between w-full ml-5 mr-4 sm:mr-0 sm:right-auto">
-              <!-- HEADER CONTENT -->
-              <div>
-                <div class="block lg:hidden">
-                  <Alertbase />
-                </div>
-              </div>
-              <div class="flex items-center">
-                <a href="/app/profile" class="block relative">
-                  <Icon name="account_circle" />
-                </a>
-                <Icon class="block lg:hidden" name="menu" on:click={toggleMobileMenu} />
-              </div>
-            </div>
+      <header
+        class="sticky top-0 w-full px-3 shadow-lg bg-white dark:bg-gray-700 h-16 rounded-2xl z-40 flex flex-row items-center justify-between"
+      >
+        <!-- HEADER CONTENT -->
+        <div>
+          <div class="block lg:hidden">
+            <Alertbase />
           </div>
         </div>
+        <div class="flex items-center">
+          <a href="/app/profile" class="block relative">
+            <Icon name="account_circle" noMargin />
+          </a>
+          <Icon class="block lg:hidden" name={mobileMenuOpen ? 'close' : 'menu'} on:click={toggleMobileMenu} noMargin />
+        </div>
       </header>
-      <div class="block lg:hidden">
-        <Menu />
-      </div>
+      {#if mobileMenuOpen}
+        <div class="block lg:hidden">
+          <Menu />
+        </div>
+      {/if}
       <!-- CONTENT -->
-      <div class="py-2 px-2 lg:p-0">
-        <slot />
-      </div>
+      <slot />
     </div>
   </div>
 </main>

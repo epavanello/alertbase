@@ -1876,16 +1876,20 @@
   export let noMargin = false
   export let noHover = false
   export let size: 'small' | 'normal' | 'big' = 'normal'
+  export let disabled = false
 
   let classes = ''
   export { classes as class }
 </script>
 
 <span
-  class={cn(classes, 'material-icons p-2 rounded cursor-pointer leading-none', {
-    'hover:bg-black/10': !noHover
+  class={cn(classes, 'p-2 rounded leading-none', {
+    'hover:bg-black/10': !noHover && !disabled,
+    'cursor-pointer': !disabled,
+    'cursor-not-allowed': disabled
   })}
   class:m-2={!noMargin}
+  class:material-icons={!filled && !outlined}
   class:material-icons-filled={filled}
   class:material-icons-outlined={outlined}
   class:text-lg={size == 'small'}
