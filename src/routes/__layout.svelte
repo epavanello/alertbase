@@ -1,9 +1,9 @@
 <script>
   import '$styles/tailwind-output.css'
 
-  import Footer from '$components/layout/Footer.svelte'
   import Header from '$components/layout/Header.svelte'
   import { goto } from '$app/navigation'
+  import ThemeToggle from '$components/ThemeToggle.svelte'
 
   let urlSearch = new URLSearchParams(window.location.hash.substr(1))
 
@@ -17,5 +17,8 @@
   <div class="container mx-auto px-2">
     <slot />
   </div>
-  <Footer />
+
+  <div class="fixed bottom-2 md:bottom-3 right-4 sm:right-6 lg:right-8">
+    <ThemeToggle />
+  </div>
 </main>
