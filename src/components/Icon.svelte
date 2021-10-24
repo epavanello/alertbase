@@ -1886,7 +1886,7 @@
   class={cn(classes, 'p-2 rounded leading-none', {
     'hover:bg-black/10': !noHover && !disabled,
     'cursor-pointer': !disabled,
-    'cursor-not-allowed': disabled
+    'cursor-not-allowed opacity-50': disabled
   })}
   class:m-2={!noMargin}
   class:material-icons={!filled && !outlined}
