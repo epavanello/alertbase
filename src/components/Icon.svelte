@@ -1874,6 +1874,7 @@
   export let outlined = false
   export let filled = false
   export let noMargin = false
+  export let noHover = false
   export let size: 'small' | 'normal' | 'big' = 'normal'
 
   let classes = ''
@@ -1881,7 +1882,9 @@
 </script>
 
 <span
-  class={cn(classes, 'material-icons p-2 hover:bg-white/50 dark:hover:bg-black/25 rounded cursor-pointer leading-none')}
+  class={cn(classes, 'material-icons p-2 rounded cursor-pointer leading-none', {
+    'hover:bg-black/10': !noHover
+  })}
   class:m-2={!noMargin}
   class:material-icons-filled={filled}
   class:material-icons-outlined={outlined}

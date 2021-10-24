@@ -12,8 +12,10 @@
   }
 </script>
 
-<Header />
-<main class="container mx-auto px-2">
-  <slot />
+<main class="bg-gray-100 dark:bg-gray-900 dark:text-gray-100 h-screen relative">
+  <Header />
+  <div class="container mx-auto px-2">
+    <slot />
+  </div>
+  <Footer />
 </main>
-<Footer />

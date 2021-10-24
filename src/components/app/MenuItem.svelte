@@ -22,7 +22,7 @@
   href={path}
 >
   <span class="text-left">
-    <Icon name={icon} noMargin />
+    <Icon name={icon} noMargin noHover />
   </span>
   <span class="mx-4 text-sm font-normal">{label}</span>
 </a>

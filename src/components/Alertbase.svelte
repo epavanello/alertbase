@@ -1,3 +1,1 @@
-<div class="prose prose-sm">
-  <h1 class="dark:text-white cursor-default">Alertbase</h1>
-</div>
+<span class="text-3xl leading-5 font-extrabold">Alertbase</span>
