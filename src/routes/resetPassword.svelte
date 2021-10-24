@@ -21,7 +21,7 @@
   }
 </script>
 
-<form class="mt-16 card w-96 flex flex-col gap-4">
+<form class="mt-16 card w-1/3 mx-auto">
   <h2 class="text-center">Reset your password</h2>
   {#if $user}
     <Input id="password" type="password" bind:value={password} label="Enter your new password" />

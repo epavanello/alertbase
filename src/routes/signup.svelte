@@ -36,7 +36,7 @@
   }
 </script>
 
-<form class="mt-16 card w-96 flex flex-col gap-4" on:submit|preventDefault={signup}>
+<form class="mt-16 card w-1/3 mx-auto" on:submit|preventDefault={signup}>
   <h2 class="text-center">Create an account</h2>
 
   <Input id="email" mandatory type="text" bind:value={email} label="Email" />

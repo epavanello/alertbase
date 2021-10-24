@@ -39,7 +39,7 @@
   }
 </script>
 
-<form class="mt-16 card w-96 flex flex-col gap-4" on:submit|preventDefault={login}>
+<form class="mt-16 card w-1/3 mx-auto" on:submit|preventDefault={login}>
   <h2 class="text-center">Sign in to your account</h2>
   <Input id="email" mandatory type="text" bind:value={email} label="Email" />
   <Input id="password" mandatory type="password" bind:value={password} label="Password" />

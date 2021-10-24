@@ -24,7 +24,7 @@
       size="small"
       name="close"
       noMargin
-      class="mr-2"
+      class="mr-2 cursor-pointer"
       on:click={() => {
         show = false
         dispatch('close')

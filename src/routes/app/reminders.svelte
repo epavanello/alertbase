@@ -64,7 +64,7 @@
 
 <div class="lane-container">
   <!-- BOX 1 -->
-  <div class="lane">
+  <div class="card">
     <h2 class="text-center">Add your reminder</h2>
     <Input id="reminder" type="text" bind:value={newReminder} label="Your reminder" />
     <Datetime label="Date" id="reminder-date" bind:date={reminderDate} />
@@ -75,7 +75,7 @@
     {/if}
   </div>
   <!-- BOX 2 -->
-  <div class="lane">
+  <div class="card">
     <h2 class="text-center">Future reminders</h2>
     <ul class="grid gap-2">
       {#each reminders || [] as { id, reminder_date, sent, text }}
@@ -87,7 +87,7 @@
     </ul>
   </div>
   <!-- BOX 3 -->
-  <div class="lane">
+  <div class="card">
     <h2 class="text-center">Reminders sent</h2>
     <ul class="grid gap-2">
       {#each remindersSent || [] as { id, reminder_date, sent, text }}

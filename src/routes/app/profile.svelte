@@ -23,7 +23,7 @@
 </script>
 
 <div class="w-1/3 mx-auto">
-  <div class="lane">
+  <div class="card">
     <h2 class="text-center">Your profile</h2>
     <Input id="reminder-email" label="Send reminders to" mandatory bind:value={remindersDestination} />
     <button on:click={updateConfig} disabled={originalDestination != remindersDestination}>Update</button>

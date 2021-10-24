@@ -1,8 +1,8 @@
 <div class="lane-container">
   <!-- BOX 1 -->
-  <div class="lane" />
+  <div class="card" />
   <!-- BOX 2 -->
-  <div class="lane" />
+  <div class="card" />
   <!-- BOX 3 -->
-  <div class="lane" />
+  <div class="card" />
 </div>
