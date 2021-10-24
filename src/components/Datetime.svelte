@@ -18,4 +18,4 @@
   $: output(internal)
 </script>
 
-<Input {id} {label} type="datetime-local" bind:value={internal} placeholder="Click to select a date" />
+<Input {id} {label} type="datetime-local" bind:value={internal} />
