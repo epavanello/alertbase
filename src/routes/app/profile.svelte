@@ -1,17 +1,31 @@
-<div class="flex flex-col flex-wrap sm:flex-row ">
-  <div class="w-full sm:w-1/2 xl:w-1/3">
-    <div class="mb-4">
-      <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-700 w-full" />
-    </div>
-  </div>
-  <div class="w-full sm:w-1/2 xl:w-1/3">
-    <div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
-      <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-700 w-full" />
-    </div>
-  </div>
-  <div class="w-full sm:w-1/2 xl:w-1/3">
-    <div class="mb-4">
-      <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-700 w-full" />
-    </div>
+<script lang="ts">
+  import Input from '$components/Input.svelte'
+
+  import supabase from '$logic/supabase'
+
+  let remindersDestination = ''
+  let originalDestination = ''
+
+  async function loadConfig() {
+    const { body, error } = await supabase.from('configuration').select()
+    if (error) {
+      alert(error.message)
+    }
+    if (body?.length == 1) {
+      remindersDestination = body[0].email_notification
+      originalDestination = remindersDestination
+    }
+  }
+  async function updateConfig() {
+    await supabase.from('configuration').upsert({ email_notification: remindersDestination }, { onConflict: 'user_id' })
+  }
+  loadConfig()
+</script>
+
+<div class="w-1/3 mx-auto">
+  <div class="lane">
+    <h2 class="text-center">Your profile</h2>
+    <Input id="reminder-email" label="Send reminders to" mandatory bind:value={remindersDestination} />
+    <button on:click={updateConfig} disabled={originalDestination != remindersDestination}>Update</button>
   </div>
 </div>

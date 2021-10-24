@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  input[type='text'],
-  input[type='password'],
-  input[type='datetime-local'] {
-    @apply border-b border-gray-300 outline-none px-2 py-1 bg-transparent;
-  }
-
   button:not(.primary),
   .button:not(.primary) {
     @apply px-4 py-2 text-base font-normal text-gray-800 transition-colors border border-gray-800 rounded-full shadow-md hover:bg-gray-800 hover:text-white dark:text-white dark:hover:bg-white dark:hover:text-gray-800;
@@ -24,5 +18,13 @@
 
   .card {
     @apply border border-gray-200 shadow-md mx-auto p-8 rounded-md;
+  }
+
+  .lane-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4;
+  }
+
+  .lane {
+    @apply shadow-lg rounded-2xl p-8 bg-white dark:bg-gray-700 w-full flex flex-col gap-4;
   }
 }

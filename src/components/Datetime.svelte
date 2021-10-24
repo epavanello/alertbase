@@ -1,6 +1,9 @@
 <script lang="ts">
   import dayjs from 'dayjs'
+  import Input from './Input.svelte'
   export let date: Date | null = null
+  export let label: string
+  export let id: string
 
   let internal: string
 
@@ -17,4 +20,4 @@
   $: console.log(date?.toLocaleString())
 </script>
 
-<input type="datetime-local" bind:value={internal} />
+<Input {id} {label} type="datetime-local" bind:value={internal} />

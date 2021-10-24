@@ -10,13 +10,14 @@
 
   const appMenu: { label: string; path: string; icon: IconNames }[] = [
     { label: 'Dashboard', path: '/app', icon: 'space_dashboard' },
-    { label: 'Reminders', path: '/app/reminders', icon: 'date_range' }
+    { label: 'Reminders', path: '/app/reminders', icon: 'date_range' },
+    { label: 'Profile', path: '/app/profile', icon: 'account_circle' }
   ]
 
   $: console.log($page.path)
 </script>
 
-<main class="bg-gray-100 dark:bg-gray-900 rounded-2xl h-screen overflow-hidden relative">
+<main class="h-screen overflow-hidden relative">
   <div class="flex items-start justify-between">
     <!-- SIDE MENU -->
     <div class="h-screen hidden lg:block my-4 ml-4 shadow-lg relative w-80">

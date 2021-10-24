@@ -21,6 +21,7 @@
   import { store } from '$logic/store'
   import { setLoginMessage } from '$logic/slices/uiSlice'
   import type { LoadOutput } from '@sveltejs/kit'
+  import Input from '$components/Input.svelte'
 
   let email = ''
   let password = ''
@@ -37,8 +38,10 @@
 
 <form class="mt-16 card w-96 flex flex-col gap-4" on:submit|preventDefault={signup}>
   <h2 class="text-center">Create an account</h2>
-  <input type="text" bind:value={email} placeholder="Email" />
-  <input type="password" bind:value={password} placeholder="Password" />
+
+  <Input id="email" mandatory type="text" bind:value={email} label="Email" />
+  <Input id="password" mandatory type="password" bind:value={password} label="Password" />
   <button type="submit" class="primary text-center" on:click={signup}>Signup</button>
+
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
 </form>
