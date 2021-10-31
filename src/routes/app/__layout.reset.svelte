@@ -1,5 +1,5 @@
 <script lang="ts">
-  import '$styles/tailwind-output.css'
+  import 'virtual:windi.css'
 
   import Alertbase from '$components/Alertbase.svelte'
   import Icon from '$components/Icon.svelte'

@@ -22,6 +22,7 @@
   import { onMount } from 'svelte'
   import type { LoadOutput } from '@sveltejs/kit'
   import Input from '$components/Input.svelte'
+  import Button from '$components/Button.svelte'
 
   let email = ''
   let password = ''
@@ -45,7 +46,7 @@
   <div class="flex flex-row justify-end">
     <a href="/resetPassword" class="underline text-xs" tabindex="-1">Forgot your password?</a>
   </div>
-  <button type="submit" class="primary text-center" on:click={login}>Login</button>
+  <Button type="submit" primary on:click={login} disabled={email.length == 0 || password.length == 0}>Login</Button>
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
   <Alert
     show={!!$store.ui.loginMessage}

@@ -22,6 +22,7 @@
   import { setLoginMessage } from '$logic/slices/uiSlice'
   import type { LoadOutput } from '@sveltejs/kit'
   import Input from '$components/Input.svelte'
+  import Button from '$components/Button.svelte'
 
   let email = ''
   let password = ''
@@ -41,7 +42,7 @@
 
   <Input id="email" mandatory type="text" bind:value={email} label="Email" />
   <Input id="password" mandatory type="password" bind:value={password} label="Password" />
-  <button type="submit" class="primary text-center" on:click={signup}>Signup</button>
+  <Button type="submit" primary on:click={signup} disabled={email.length == 0 || password.length == 0}>Signup</Button>
 
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
 </form>

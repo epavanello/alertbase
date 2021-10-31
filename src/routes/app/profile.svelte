@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Button from '$components/Button.svelte'
+
   import Input from '$components/Input.svelte'
 
   import supabase from '$logic/supabase'
@@ -26,6 +28,6 @@
   <div class="card">
     <h2 class="text-center">Your profile</h2>
     <Input id="reminder-email" label="Send reminders to" mandatory bind:value={remindersDestination} />
-    <button on:click={updateConfig} disabled={originalDestination != remindersDestination}>Update</button>
+    <Button on:click={updateConfig} disabled={originalDestination == remindersDestination}>Update</Button>
   </div>
 </div>

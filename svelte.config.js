@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-netlify'
 import preprocess from 'svelte-preprocess'
 import path from 'path'
+import WindiCSS from 'vite-plugin-windicss'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -16,6 +17,7 @@ const config = {
     target: '#svelte',
 
     vite: {
+      plugins: [WindiCSS()],
       ssr: {
         noExternal: ['@reduxjs/toolkit']
       },

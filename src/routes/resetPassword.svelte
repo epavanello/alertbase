@@ -2,6 +2,7 @@
   import supabase, { user } from '$logic/supabase'
   import Alert from '$components/Alert.svelte'
   import Input from '$components/Input.svelte'
+  import Button from '$components/Button.svelte'
   let email = ''
   let password = ''
   let error: Error | null = null
@@ -25,10 +26,10 @@
   <h2 class="text-center">Reset your password</h2>
   {#if $user}
     <Input id="password" type="password" bind:value={password} label="Enter your new password" />
-    <button type="button" class="primary text-center" on:click={update}>Update</button>
+    <Button primary on:click={update} disabled={password.length == 0}>Update</Button>
   {:else}
     <Input id="email" type="text" bind:value={email} label="Enter your email" />
-    <button type="button" class="primary text-center" on:click={reset}>Reset</button>
+    <Button primary on:click={reset} disabled={email.length == 0}>Reset</Button>
   {/if}
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
   <Alert show={resetSent} message="Reset request sent" on:close={() => (resetSent = false)} type="info" />

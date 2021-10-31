@@ -1,3 +1,7 @@
+<script>
+  import Button from '$components/Button.svelte'
+</script>
+
 <atricle class="h-[400px] lg:h-[600px] flex flex-col justify-center items-center gap-2 sm:gap-6 lg:gap-12">
   <h1 class="text-center dark:text-white text-2xl sm:text-4xl lg:text-7xl font-extrabold">Welcome to Alertbase</h1>
   <p class="text-sm sm:text-2xl lg:text-3xl leading-6 text-center">
@@ -5,7 +9,7 @@
     Never miss your reminders again.
   </p>
   <div class="flex flex-row gap-4">
-    <button class="primary">Learn more</button>
-    <button>Start for free</button>
+    <Button primary>Learn more</Button>
+    <Button>Start for free</Button>
   </div>
 </atricle>

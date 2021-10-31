@@ -23,6 +23,7 @@
   import type { PostgrestError } from '@supabase/postgrest-js'
   import dayjs from 'dayjs'
   import Input from '$components/Input.svelte'
+  import Button from '$components/Button.svelte'
 
   interface Row {
     text: string
@@ -34,18 +35,21 @@
   let data: Row[] | null
   let error: PostgrestError | null
 
+  let newReminder = ''
+  let reminderDate: Date | null = null
+
   $: reminders = data?.filter((reminder) => !reminder.sent) || []
   $: remindersSent = data?.filter((reminder) => reminder.sent) || []
+  $: canSend = newReminder.trim().length > 0 && reminderDate != null
 
-  let newReminder = ''
-  let reminderDate: Date | undefined
   async function addReminder() {
-    if (newReminder.trim().length > 0) {
+    if (canSend) {
       await supabase.from('reminders').insert({
         text: newReminder,
         reminder_date: reminderDate
       })
       newReminder = ''
+      reminderDate = null
       loadData()
     }
   }
@@ -64,21 +68,21 @@
 
 <div class="lane-container">
   <!-- BOX 1 -->
-  <div class="card">
+  <form class="card" on:submit|preventDefault={addReminder}>
     <h2 class="text-center">Add your reminder</h2>
     <Input id="reminder" type="text" bind:value={newReminder} label="Your reminder" />
     <Datetime label="Date" id="reminder-date" bind:date={reminderDate} />
-    <button type="button" class="primary" on:click={addReminder}>Submit</button>
+    <Button type="submit" disabled={!canSend} primary>Submit</Button>
 
     {#if error}
       <p>{error.message}</p>
     {/if}
-  </div>
+  </form>
   <!-- BOX 2 -->
   <div class="card">
     <h2 class="text-center">Future reminders</h2>
     <ul class="grid gap-2">
-      {#each reminders || [] as { id, reminder_date, sent, text }}
+      {#each reminders || [] as { id, reminder_date, text }}
         <li class="w-full flex flex-row items-center justify-between gap-2">
           <p class="flex flex-col">
             <span class="text-lg">{text}</span>
@@ -93,10 +97,10 @@
   <div class="card">
     <h2 class="text-center">Reminders sent</h2>
     <ul class="grid gap-2">
-      {#each remindersSent || [] as { id, reminder_date, sent, text }}
+      {#each remindersSent || [] as { reminder_date, text }}
         <li class="flex flex-col w-full">
-            <span class="text-lg line-through">{text}</span>
-            <span class="text-xs italic">{dayjs(reminder_date).toDate().toLocaleString()}</span>
+          <span class="text-lg line-through">{text}</span>
+          <span class="text-xs italic">{dayjs(reminder_date).toDate().toLocaleString()}</span>
         </li>
       {/each}
     </ul>

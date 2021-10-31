@@ -1,5 +1,5 @@
 <script>
-  import '$styles/tailwind-output.css'
+  import 'virtual:windi.css'
 
   import Header from '$components/layout/Header.svelte'
   import { goto } from '$app/navigation'
