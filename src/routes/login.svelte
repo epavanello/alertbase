@@ -46,7 +46,7 @@
   <div class="flex flex-row justify-end">
     <a href="/resetPassword" class="underline text-xs" tabindex="-1">Forgot your password?</a>
   </div>
-  <Button type="submit" primary on:click={login} disabled={email.length == 0 || password.length == 0}>Login</Button>
+  <Button type="submit" primary disabled={email.length == 0 || password.length == 0}>Login</Button>
   <Alert show={!!error} message={error?.message} on:close={() => (error = null)} />
   <Alert
     show={!!$store.ui.loginMessage}

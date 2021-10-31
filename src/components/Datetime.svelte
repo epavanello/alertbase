@@ -3,6 +3,7 @@
   import Input from './Input.svelte'
   export let date: Date | null = null
   export let label: string
+  export let mandatory = false
   export let id: string
 
   let internal: string
@@ -18,4 +19,4 @@
   $: output(internal)
 </script>
 
-<Input {id} {label} type="datetime-local" bind:value={internal} />
+<Input {id} {label} {mandatory} type="datetime-local" bind:value={internal} />

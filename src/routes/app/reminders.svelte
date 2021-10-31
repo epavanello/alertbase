@@ -70,8 +70,8 @@
   <!-- BOX 1 -->
   <form class="card" on:submit|preventDefault={addReminder}>
     <h2 class="text-center">Add your reminder</h2>
-    <Input id="reminder" type="text" bind:value={newReminder} label="Your reminder" />
-    <Datetime label="Date" id="reminder-date" bind:date={reminderDate} />
+    <Input id="reminder" label="Your reminder" mandatory type="text" bind:value={newReminder} />
+    <Datetime id="reminder-date" label="Date" mandatory bind:date={reminderDate} />
     <Button type="submit" disabled={!canSend} primary>Submit</Button>
 
     {#if error}
