@@ -1,3 +1,22 @@
+<script context="module" lang="ts">
+  import type { LoadOutput } from '@sveltejs/kit'
+
+  export const ssr = false
+
+  export function load(): LoadOutput {
+    const user = supabase.auth.user()
+    if (!user) {
+      return {
+        status: 302,
+        redirect: '/'
+      }
+    }
+    return {
+      status: 200
+    }
+  }
+</script>
+
 <script lang="ts">
   import Button from '$components/Button.svelte'
 
@@ -26,7 +45,7 @@
 
 <div class="w-full sm:w-1/2 xl:w-1/3 mx-auto">
   <div class="card">
-    <h2 class="title">Your profile</h2>
+    <h2 class="text-center">Your profile</h2>
     <Input id="reminder-email" label="Send reminders to" mandatory bind:value={remindersDestination} />
     <Button on:click={updateConfig} disabled={originalDestination == remindersDestination}>Update</Button>
   </div>

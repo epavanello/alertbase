@@ -4,12 +4,15 @@
   import Header from '$components/layout/Header.svelte'
   import { goto } from '$app/navigation'
   import ThemeToggle from '$components/ThemeToggle.svelte'
+  import { onMount } from 'svelte'
 
-  let urlSearch = new URLSearchParams(window.location.hash.substr(1))
+  onMount(() => {
+    const urlSearch = new URLSearchParams(window.location.hash.substr(1))
 
-  if (urlSearch.has('type') && urlSearch.get('type') == 'recovery') {
-    goto(`/resetPassword`)
-  }
+    if (urlSearch.has('type') && urlSearch.get('type') == 'recovery') {
+      goto(`/resetPassword`)
+    }
+  })
 </script>
 
 <main class="h-screen relative">

@@ -30,7 +30,7 @@ const config = {
         }
       }
     },
-    ssr: false
+    ssr: true
   }
 }
 

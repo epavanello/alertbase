@@ -1,14 +1,23 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
+
   import Icon from './Icon.svelte'
 
-  let isDark =
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  let isDark = false
+  let isMount = false
+
+  onMount(() => {
+    isMount = true
+
+    isDark =
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  })
 
   $: if (isDark) {
-    document.querySelector('html')?.classList.add('dark')
+    isMount && document.querySelector('html')?.classList.add('dark')
   } else {
-    document.querySelector('html')?.classList.remove('dark')
+    isMount && document.querySelector('html')?.classList.remove('dark')
   }
 
   function handleToggleActive() {

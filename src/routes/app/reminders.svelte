@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
   import type { LoadOutput } from '@sveltejs/kit'
 
+  export const ssr = false
+
   export function load(): LoadOutput {
     const user = supabase.auth.user()
     if (!user) {
@@ -69,7 +71,7 @@
 <div class="lane-container">
   <!-- BOX 1 -->
   <form class="card" on:submit|preventDefault={addReminder}>
-    <h2 class="title">Add your reminder</h2>
+    <h2 class="text-center">Add your reminder</h2>
     <Input id="reminder" label="Your reminder" mandatory type="text" bind:value={newReminder} />
     <Datetime id="reminder-date" label="Date" mandatory bind:date={reminderDate} />
     <Button type="submit" disabled={!canSend} primary>Submit</Button>
@@ -80,7 +82,7 @@
   </form>
   <!-- BOX 2 -->
   <div class="card">
-    <h2 class="title">Future reminders</h2>
+    <h2 class="text-center">Future reminders</h2>
     <ul class="grid gap-2">
       {#each reminders || [] as { id, reminder_date, text }}
         <li class="w-full flex flex-row items-center justify-between gap-2">
@@ -95,7 +97,7 @@
   </div>
   <!-- BOX 3 -->
   <div class="card">
-    <h2 class="title">Reminders sent</h2>
+    <h2 class="text-center">Reminders sent</h2>
     <ul class="grid gap-2">
       {#each remindersSent || [] as { reminder_date, text }}
         <li class="flex flex-col w-full">
