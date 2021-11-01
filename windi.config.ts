@@ -6,7 +6,7 @@ export default defineConfig({
   darkMode: 'class',
   attributify: false,
   shortcuts: {
-    h2: 'font-bold text-2xl py-4',
+    title: 'font-bold text-2xl py-4 text-center',
     'lane-container': 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4',
     card: 'shadow-lg rounded-2xl p-8 bg-white dark:bg-gray-700 w-full flex flex-col gap-4'
   },

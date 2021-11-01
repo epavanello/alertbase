@@ -39,8 +39,12 @@
   }
 </script>
 
+<svelte:head>
+  <title>Alertbase | Login</title>
+</svelte:head>
+
 <form class="mt-16 card w-full sm:w-1/2 xl:w-1/3 mx-auto" on:submit|preventDefault={login}>
-  <h2 class="text-center">Sign in to your account</h2>
+  <h2 class="title">Sign in to your account</h2>
   <Input id="email" mandatory type="text" bind:value={email} label="Email" />
   <Input id="password" mandatory type="password" bind:value={password} label="Password" />
   <div class="flex flex-row justify-end">

@@ -37,8 +37,12 @@
   }
 </script>
 
+<svelte:head>
+  <title>Alertbase | Signup</title>
+</svelte:head>
+
 <form class="mt-16 card w-full sm:w-1/2 xl:w-1/3 mx-auto" on:submit|preventDefault={signup}>
-  <h2 class="text-center">Create an account</h2>
+  <h2 class="title">Create an account</h2>
 
   <Input id="email" mandatory type="text" bind:value={email} label="Email" />
   <Input id="password" mandatory type="password" bind:value={password} label="Password" />

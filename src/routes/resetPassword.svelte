@@ -23,7 +23,7 @@
 </script>
 
 <form class="mt-16 card w-full sm:w-1/2 xl:w-1/3 mx-auto">
-  <h2 class="text-center">Reset your password</h2>
+  <h2 class="title">Reset your password</h2>
   {#if $user}
     <Input id="password" type="password" bind:value={password} label="Enter your new password" />
     <Button primary on:click={update} disabled={password.length == 0}>Update</Button>
