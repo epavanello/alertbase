@@ -1,6 +1,9 @@
 <script lang="ts">
   import Alertbase from '$components/Alertbase.svelte'
   import { user } from '$logic/supabase'
+  import { page } from '$app/stores'
+  import classNames from 'classnames'
+  import Button from '$components/Button.svelte'
 
   const menu: { label: string; address: string; show: 'always' | 'anonimous' | 'logged' }[] = [
     { label: 'Home', address: '/', show: 'always' },
@@ -22,15 +25,19 @@
         {#if item.show == 'always' || (item.show == 'logged' && $user) || (item.show == 'anonimous' && !$user)}
           <a
             href={item.address}
-            class="font-semibold hover:text-gray-900  text-gray-600 dark:hover:text-gray-100 dark:text-gray-400 inline"
-            >{item.label}</a
+            class={classNames(
+              'font-semibold inline',
+              { 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100': $page.path != item.address },
+              { 'text-gray-800 dark:text-gray-200': $page.path == item.address },
+
+            )}>{item.label}</a
           >
         {/if}
       {/each}
       {#if $user}
-        <a href="app" class="button primary">Launch App</a>
+        <Button primary href="app">Launch App</Button>
       {:else}
-        <a href="signup" class="button primary">Create Account</a>
+        <Button primary href="signup">Create Account</Button>
       {/if}
     </div>
   </nav>

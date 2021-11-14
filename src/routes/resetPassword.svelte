@@ -3,6 +3,7 @@
   import Alert from '$components/Alert.svelte'
   import Input from '$components/Input.svelte'
   import Button from '$components/Button.svelte'
+  import Text from '$components/Text.svelte'
   let email = ''
   let password = ''
   let error: Error | null = null
@@ -23,7 +24,7 @@
 </script>
 
 <form class="mt-16 card w-full sm:w-1/2 xl:w-1/3 mx-auto">
-  <h2 class="text-center">Reset your password</h2>
+  <Text type="h2">Reset your password</Text>
   {#if $user}
     <Input id="password" type="password" bind:value={password} label="Enter your new password" />
     <Button primary on:click={update} disabled={password.length == 0}>Update</Button>

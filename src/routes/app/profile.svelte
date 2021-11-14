@@ -23,6 +23,7 @@
   import Input from '$components/Input.svelte'
 
   import supabase from '$logic/supabase'
+import Text from '$components/Text.svelte';
 
   let remindersDestination = ''
   let originalDestination = ''
@@ -45,7 +46,7 @@
 
 <div class="w-full sm:w-1/2 xl:w-1/3 mx-auto">
   <div class="card">
-    <h2 class="text-center">Your profile</h2>
+    <Text type="h2">Your profile</Text>
     <Input id="reminder-email" label="Send reminders to" mandatory bind:value={remindersDestination} />
     <Button on:click={updateConfig} disabled={originalDestination == remindersDestination}>Update</Button>
   </div>

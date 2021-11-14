@@ -26,6 +26,7 @@
   import dayjs from 'dayjs'
   import Input from '$components/Input.svelte'
   import Button from '$components/Button.svelte'
+  import Text from '$components/Text.svelte'
 
   interface Row {
     text: string
@@ -71,7 +72,7 @@
 <div class="lane-container">
   <!-- BOX 1 -->
   <form class="card" on:submit|preventDefault={addReminder}>
-    <h2 class="text-center">Add your reminder</h2>
+    <Text type="h2">Add your reminder</Text>
     <Input id="reminder" label="Your reminder" mandatory type="text" bind:value={newReminder} />
     <Datetime id="reminder-date" label="Date" mandatory bind:date={reminderDate} />
     <Button type="submit" disabled={!canSend} primary>Submit</Button>
@@ -82,7 +83,7 @@
   </form>
   <!-- BOX 2 -->
   <div class="card">
-    <h2 class="text-center">Future reminders</h2>
+    <Text type="h2">Future reminders</Text>
     <ul class="grid gap-2">
       {#each reminders || [] as { id, reminder_date, text }}
         <li class="w-full flex flex-row items-center justify-between gap-2">
@@ -92,12 +93,14 @@
           </p>
           <Icon name="delete" on:click={() => deleteRow(id)} />
         </li>
+      {:else}
+        <Text type="Descriptive">No reminders available</Text>
       {/each}
     </ul>
   </div>
   <!-- BOX 3 -->
   <div class="card">
-    <h2 class="text-center">Reminders sent</h2>
+    <Text type="h2">Reminders sent</Text>
     <ul class="grid gap-2">
       {#each remindersSent || [] as { reminder_date, text }}
         <li class="flex flex-col w-full">

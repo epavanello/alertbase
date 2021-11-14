@@ -23,6 +23,7 @@
   import type { LoadOutput } from '@sveltejs/kit'
   import Input from '$components/Input.svelte'
   import Button from '$components/Button.svelte'
+  import Text from '$components/Text.svelte'
 
   let email = ''
   let password = ''
@@ -44,7 +45,7 @@
 </svelte:head>
 
 <form class="mt-16 card w-full sm:w-1/2 xl:w-1/3 mx-auto" on:submit|preventDefault={login}>
-  <h2 class="title-2">Sign in to your account</h2>
+  <Text type="h2">Sign in to your account</Text>
   <Input id="email" mandatory type="text" bind:value={email} label="Email" />
   <Input id="password" mandatory type="password" bind:value={password} label="Password" />
   <div class="flex flex-row justify-end">

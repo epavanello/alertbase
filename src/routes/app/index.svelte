@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+  import Text from '$components/Text.svelte'
+
   import supabase from '$logic/supabase'
 
   import type { LoadOutput } from '@sveltejs/kit'
@@ -21,7 +23,9 @@
 
 <div class="lane-container">
   <!-- BOX 1 -->
-  <div class="card" />
+  <div class="card">
+    <Text type="h2">Upcoming events</Text>
+  </div>
   <!-- BOX 2 -->
   <div class="card" />
   <!-- BOX 3 -->

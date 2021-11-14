@@ -9,4 +9,14 @@
   },
   "windicss.enableAttrUtilityCompletion": false,
   "windicss.enableAttrVariantCompletion": false,
+  /**"windicss.includeLanguages": {
+    "svelte": { // .svelte or your extension file
+      "type": "html",
+      "patterns": [
+        //"(\\s+classNames\\(\\s*[\"'\\`])[^\"'\\`]*$"
+        // OK "((\\s+classNames\\([\"'])[^\"']*$)"
+        //  "(?<=classnames\\()(?:'[^']*'|[,\\s]+|{[^}]*})+(?=\\))*$"
+      ],
+    },
+  }*/
 }
